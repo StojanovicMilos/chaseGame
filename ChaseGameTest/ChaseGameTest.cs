@@ -8,74 +8,71 @@ namespace ChaseGameTest
     [TestClass]
     public class ChaseGameTest
     {
-        [TestMethod]
+	    private int _numberOfPlayers;
+	    private PictureBox[][] _pictureBoxes;
+		
+		public void Initialize(int numberOfPlayers, int boardSizeX, int boardSizeY)
+		{
+			_numberOfPlayers = numberOfPlayers;
+
+			_pictureBoxes = new PictureBox[boardSizeX][];
+			for (int i = 0; i < _pictureBoxes.Length; i++)
+			{
+				_pictureBoxes[i] = new PictureBox[boardSizeY];
+
+				for (int j = 0; j < _pictureBoxes[i].Length; j++)
+				{
+					_pictureBoxes[i][j] = new PictureBox();
+				}
+			}
+		}
+
+		[TestMethod]
         public void ChaseGameConstructorValidInput()
         {
-            // arrange  
-            int numberOfPlayers = 5;
-            int boardSizeX = 80;
-            int boardSizeY = 45;
-            PictureBox[,] pictureBoxes = new PictureBox[boardSizeX, boardSizeY];
-            for (int i = 0; i < pictureBoxes.GetLength(0); i++)
-            {
-                for (int j = 0; j < pictureBoxes.GetLength(1); j++)
-                {
-                    pictureBoxes[i, j] = new PictureBox();
-                }
-            }
-
-            // act  
-            ChaseGame chaseGame = new ChaseGame(pictureBoxes, numberOfPlayers);
-
-            // assert  
+            // arrange
+			const int numberOfPlayers = 5;
+			const int boardSizeX = 80;
+			const int boardSizeY = 45;
+			Initialize(numberOfPlayers, boardSizeX, boardSizeY);
             
+            // act  
+            new ChaseGame(_pictureBoxes, _numberOfPlayers);
+
+            // assert
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ChaseGameConstructorInvalidX()
         {
-            // arrange  
-            int numberOfPlayers = 5;
-            int boardSizeX = 0;
-            int boardSizeY = 90;
-            PictureBox[,] pictureBoxes = new PictureBox[boardSizeX, boardSizeY];
-            for (int i = 0; i < pictureBoxes.GetLength(0); i++)
-            {
-                for (int j = 0; j < pictureBoxes.GetLength(1); j++)
-                {
-                    pictureBoxes[i, j] = new PictureBox();
-                }
-            }
+			// arrange
+			const int numberOfPlayers = 5;
+			const int boardSizeX = 0;
+			const int boardSizeY = 90;
+			Initialize(numberOfPlayers, boardSizeX, boardSizeY);
 
-            // act  
-            ChaseGame chaseGame = new ChaseGame(pictureBoxes, numberOfPlayers);
+			// act  
+			new ChaseGame(_pictureBoxes, _numberOfPlayers);
 
-            // assert  
-
+            // assert 
         }
 
         [TestMethod]
         public void ChaseGameMapGeneration()
         {
-            for (int numberOfIterations = 0; numberOfIterations < 1000; numberOfIterations++)
+	        const int numberOfIterations = 1000;
+	        for (int iteration = 0; iteration < numberOfIterations; iteration++)
             {
-                // arrange  
-                int numberOfPlayers = 5;
-                int boardSizeX = 160;
-                int boardSizeY = 90;
-                PictureBox[,] pictureBoxes = new PictureBox[boardSizeX, boardSizeY];
-                for (int i = 0; i < pictureBoxes.GetLength(0); i++)
-                {
-                    for (int j = 0; j < pictureBoxes.GetLength(1); j++)
-                    {
-                        pictureBoxes[i, j] = new PictureBox();
-                    }
-                }
+				// arrange
+				const int numberOfPlayers = 5;
+				const int boardSizeX = 160;
+				const int boardSizeY = 90;
+				Initialize(numberOfPlayers, boardSizeX, boardSizeY);
 
-                // act  
-                ChaseGame chaseGame = new ChaseGame(pictureBoxes, numberOfPlayers);
-                bool validGameBoard = chaseGame.CheckGameBoard();
+				// act  
+				ChaseGame chaseGame = new ChaseGame(_pictureBoxes, _numberOfPlayers);
+				bool validGameBoard = chaseGame.CheckGameBoard();
 
                 // assert  
                 Assert.IsTrue(validGameBoard);

@@ -5,7 +5,8 @@ using System.Text;
 
 namespace ChaseGameNamespace
 {
-    class Player
+	public class Player
     {
+
     }
 }

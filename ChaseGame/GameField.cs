@@ -1,48 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ChaseGameNamespace
 {
-    public abstract class GameField
+	public class GameField
     {
-        protected PictureBox pictureBox;
-        public static readonly int fieldSize = 20;
-        protected GameField(PictureBox pictureBox)
-        {
-            this.pictureBox = pictureBox;
-        }
-        public abstract void Draw();
-        protected abstract Color GetFieldColor();
-    }
+		private readonly PictureBox _pictureBox;
 
-    public class RoadGameField : GameField
-    {
-        public RoadGameField(PictureBox pictureBox) : base(pictureBox) { }
-        protected override Color GetFieldColor()
-        {
-            return Color.Silver;
-        }
-        public override void Draw()
-        {
-            pictureBox.BackColor = GetFieldColor();
-        }
-    }
+		private readonly Dictionary<GameFieldType, Color> _colors = new Dictionary<GameFieldType, Color>
+		{
+			{ GameFieldType.Road, Color.Silver },
+			{ GameFieldType.Grass, Color.Green }
+		};
 
-    public class GrassGameField : GameField
-    {
-        public GrassGameField(PictureBox pictureBox) : base(pictureBox) { }
-        protected override Color GetFieldColor()
+
+	    public GameFieldType Type { get; }
+
+        public GameField(PictureBox pictureBox, GameFieldType type)
         {
-            return Color.Green;
-        }
-        public override void Draw()
-        {
-            pictureBox.BackColor = GetFieldColor();
+	        _pictureBox = pictureBox;
+	        Type = type;
         }
 
+		public void Draw()
+		{
+			_pictureBox.BackColor = _colors[Type];
+		}
     }
 }
