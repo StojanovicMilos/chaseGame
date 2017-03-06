@@ -33,7 +33,7 @@ namespace ChaseGameNamespace
             {
                 for (int y = 0; y < gameBoard.GetLength(1); y++)
                 {
-                    if ((x % 2 == 0) && (y % 2 == 0))
+                    if ((x % 2 != 0) && (y % 2 != 0))
                         gameBoard[x, y] = new GrassGameField(pictureBoxes[x, y]);
                     else
                         gameBoard[x, y] = new RoadGameField(pictureBoxes[x, y]);
