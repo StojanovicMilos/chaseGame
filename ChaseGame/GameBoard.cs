@@ -22,8 +22,23 @@ namespace ChaseGameNamespace
                     gameBoard[i, j] = new GameField(pictureBoxes[i, j]);
                 }
             }*/
-            GenerateRandomGameBoard(pictureBoxes);
+            //GenerateRandomGameBoard(pictureBoxes);
+            GenerateFixedGameBoard(pictureBoxes);
             Draw();
+        }
+
+        private void GenerateFixedGameBoard(PictureBox[,] pictureBoxes)
+        {
+            for (int x = 0; x < gameBoard.GetLength(0); x++)
+            {
+                for (int y = 0; y < gameBoard.GetLength(1); y++)
+                {
+                    if ((x % 2 == 0) && (y % 2 == 0))
+                        gameBoard[x, y] = new GrassGameField(pictureBoxes[x, y]);
+                    else
+                        gameBoard[x, y] = new RoadGameField(pictureBoxes[x, y]);
+                }
+            }
         }
 
         private void Draw()
@@ -46,7 +61,7 @@ namespace ChaseGameNamespace
                 for (int y = 0; y < gameBoard.GetLength(1); y++)
                 {
                     if ((x == 0) || (y == 0) || (x == (gameBoard.GetLength(0) - 1)) || (y == (gameBoard.GetLength(1) - 1)))
-                        gameBoard[x, y] = new RoadGameField(pictureBoxes[x,y]);
+                        gameBoard[x, y] = new RoadGameField(pictureBoxes[x, y]);
                 }
             }
         }
@@ -69,7 +84,7 @@ namespace ChaseGameNamespace
                 for (int y = 0; y < gameBoard.GetLength(1); y++)
                 {
                     if ((gameBoard[x, y] == null))// || (GetNumberOfNeighbourRoads(x, y) == 1))
-                        gameBoard[x, y] = new GrassGameField(pictureBoxes[x,y]);
+                        gameBoard[x, y] = new GrassGameField(pictureBoxes[x, y]);
                 }
             }
         }
@@ -264,7 +279,7 @@ namespace ChaseGameNamespace
                         return false;
                     if (FieldIsType(x, y, typeof(RoadGameField)) && BottomNeighbourIsType(x, y, typeof(RoadGameField)) && BottomLeftNeighbourIsType(x, y, typeof(RoadGameField)) && LeftNeighbourIsType(x, y, typeof(RoadGameField)))
                         return false;
-                }   
+                }
             }
             return true;
         }
