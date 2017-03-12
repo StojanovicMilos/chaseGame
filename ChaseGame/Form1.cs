@@ -40,6 +40,7 @@ namespace ChaseGameNamespace
 	        const int numberOfPlayers = 5;
 
 	        ChaseGame chaseGame = new ChaseGame(_pictureBoxes, numberOfPlayers);
+            Text = chaseGame.CheckGameBoard() ? "Valid" : "Invalid";
         }
     }
 }

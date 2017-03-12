@@ -61,7 +61,7 @@ namespace ChaseGameTest
         [TestMethod]
         public void ChaseGameMapGeneration()
         {
-	        const int numberOfIterations = 1000;
+	        const int numberOfIterations = 10;
 	        for (int iteration = 0; iteration < numberOfIterations; iteration++)
             {
 				// arrange
