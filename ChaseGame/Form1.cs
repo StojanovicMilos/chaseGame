@@ -21,7 +21,7 @@ namespace ChaseGameNamespace
             _pictureBoxes = new PictureBox[boardSizeX][];
             for (int i = 0; i < _pictureBoxes.Length; i++)
             {
-	            _pictureBoxes[i] = new PictureBox[boardSizeY];
+                _pictureBoxes[i] = new PictureBox[boardSizeY];
 
                 for (int j = 0; j < _pictureBoxes[i].Length; j++)
                 {
@@ -37,10 +37,16 @@ namespace ChaseGameNamespace
 
         private void button1_Click(object sender, EventArgs e)
         {
-	        const int numberOfPlayers = 5;
-
-	        ChaseGame chaseGame = new ChaseGame(_pictureBoxes, numberOfPlayers);
-            Text = chaseGame.CheckGameBoard() ? "Valid" : "Invalid";
+            const int numberOfPlayers = 5;
+            IGenerator generator;
+            if (radioButton1.Checked)
+                generator = new StaticGenerator();
+            else if (radioButton2.Checked)
+                generator = new RandomGenerator(new TextLogger());
+            else
+                generator = null;
+            ChaseGame chaseGame = new ChaseGame(_pictureBoxes, numberOfPlayers, generator);
+            Text = chaseGame.ValidateGameBoard() ? "Valid" : "Invalid";
         }
     }
 }
