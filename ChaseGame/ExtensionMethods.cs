@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ChaseGameNamespace
 {
@@ -10,10 +7,15 @@ namespace ChaseGameNamespace
     {
         public static string ListEveryElement(this List<Coordinates> coordinates)
         {
+            if(coordinates.Count==0)
+            {
+                return "List is empty";
+            }
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < coordinates.Count; i++)
             {
-                stringBuilder.Append(i + coordinates[i].ToString() + Environment.NewLine);
+                stringBuilder.Append(i + ". " + coordinates[i].ToString());
+                stringBuilder.Append(i < (coordinates.Count - 1) ? ", " : ".");
             }
             return stringBuilder.ToString();
         }

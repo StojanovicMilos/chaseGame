@@ -15,8 +15,12 @@ namespace ChaseGameNamespace
 			{ GameFieldType.Grass, Color.Green }
 		};
 
-
 	    public GameFieldType Type { get; }
+
+        public void SetPictureBoxImage(Image image)
+        {
+            _pictureBox.Image = image;
+        }
 
         public GameField(PictureBox pictureBox, GameFieldType type)
         {

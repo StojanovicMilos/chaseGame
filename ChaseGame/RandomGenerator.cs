@@ -10,10 +10,10 @@ namespace ChaseGameNamespace
         private List<Coordinates> _possibleNewNeighbours;
         private IGameBoard _gameBoard;
         private readonly Random _random = new Random();
-
+        private readonly int[] _inserBetterNameHere = { 100, 100, 70, 10, 0 };
         public RandomGenerator(ILogger logger)
         {
-            this._logger = logger;
+            _logger = logger;
         }
 
         public IGameBoard GenerateGameBoard(PictureBox[][] pictureBoxes)
@@ -22,12 +22,13 @@ namespace ChaseGameNamespace
             SetOutlineFieldsToRoads(pictureBoxes);
             GenerateRoads(pictureBoxes);
             FillRemainingFieldsWithGrass(pictureBoxes);
+            _gameBoard.SetBackgroundImages();
             return _gameBoard;
         }
 
         private void InitializeGameBoard(PictureBox[][] pictureBoxes)
         {
-            _logger.Log("Inisializing game board");
+            _logger.Log("Initializing game board");
             _gameBoard = new GameBoard(pictureBoxes.Length, pictureBoxes[0].Length);
             _logger.Log("GameBoardSize = " + _gameBoard.LengthX + ", " + _gameBoard.LengthY);
         }
@@ -40,8 +41,8 @@ namespace ChaseGameNamespace
                 {
                     if (FieldIsOutline(x, y))
                     {
-                        _gameBoard[x,y] = new GameField(pictureBoxes[x][y], GameFieldType.Road);
-                        _logger.Log("Outline field [" + x + "][" + y + "] is set to road");
+                        _gameBoard[x, y] = new GameField(pictureBoxes[x][y], GameFieldType.Road);
+                        _logger.Log("Outline field at coordinates [" + x + "][" + y + "] is set to road");
                     }
                 }
             }
@@ -58,7 +59,7 @@ namespace ChaseGameNamespace
             {
                 for (int y = 0; y < _gameBoard.LengthY; y++)
                 {
-                    if (_gameBoard[x,y]?.Type == GameFieldType.Road)
+                    if (_gameBoard[x, y]?.Type == GameFieldType.Road)
                     {
                         _logger.Log("--------------------------------------------------");
                         _logger.Log("Generating surrounding fields for " + x + ", " + y);
@@ -75,9 +76,9 @@ namespace ChaseGameNamespace
             {
                 for (int y = 0; y < _gameBoard.LengthY; y++)
                 {
-                    if ((_gameBoard[x,y] == null) || (_gameBoard.GetNumberOfNeighbourRoads(x, y) == 1))
+                    if ((_gameBoard[x, y] == null) || (_gameBoard.GetNumberOfNeighbourRoads(x, y) == 1))
                     {
-                        _gameBoard[x,y] = new GameField(pictureBoxes[x][y], GameFieldType.Grass);
+                        _gameBoard[x, y] = new GameField(pictureBoxes[x][y], GameFieldType.Grass);
                         _logger.Log("field [" + x + "][" + y + "] is set to grass");
                     }
                 }
@@ -90,38 +91,29 @@ namespace ChaseGameNamespace
             _logger.Log("numberOfNeighbourRoads = " + numberOfNeighbourRoads);
             _possibleNewNeighbours = _gameBoard.GetPossibleNewNeighbours(x, y);
             _logger.Log("_possibleNewNeighbours = " + _possibleNewNeighbours.ListEveryElement());
-            int numberOfNewNeighbourRoads = 0;
 
-            while ((_possibleNewNeighbours.Count > 0) && ((numberOfNeighbourRoads + numberOfNewNeighbourRoads) < 2))
+            while ((_possibleNewNeighbours.Count > 0) && (PercentChance(_inserBetterNameHere[numberOfNeighbourRoads])))
             {
-                //TODO Add more logging
+                numberOfNeighbourRoads++;
+                _logger.Log("adding neighbour number " + (numberOfNeighbourRoads).ToString());
                 AddNeighbour(pictureBoxes);
-                numberOfNewNeighbourRoads++;
+                _logger.Log("added neighbour number " + (numberOfNeighbourRoads).ToString());
+                _possibleNewNeighbours = _gameBoard.GetPossibleNewNeighbours(x, y);
+                _logger.Log("_possibleNewNeighbours = " + _possibleNewNeighbours.ListEveryElement());
             }
-
-            if ((_possibleNewNeighbours.Count <= 0) || !PercentChance(70))
-            {
-                return;
-            }
-
-            AddNeighbour(pictureBoxes);
-
-            if ((_possibleNewNeighbours.Count <= 0) || !PercentChance(10))
-            {
-                return;
-            }
-
-            AddNeighbour(pictureBoxes);
         }
 
         private void AddNeighbour(PictureBox[][] pictureBoxes)
         {
-            int index= _random.Next(_possibleNewNeighbours.Count);
+            int index = _random.Next(_possibleNewNeighbours.Count);
+            _logger.Log("adding neighbour with index = " + index + " from list.");
             Coordinates coordinates = _possibleNewNeighbours[index];
+            _logger.Log("coordinates of neighbour with index " + index + " = " + coordinates.ToString());
             _gameBoard[coordinates.X, coordinates.Y] = new GameField(pictureBoxes[coordinates.X][coordinates.Y], GameFieldType.Road);
-            _possibleNewNeighbours.RemoveAt(index);
+            _logger.Log("Field at coordinates " + coordinates.ToString() + " set to road");
+            //_possibleNewNeighbours.RemoveAt(index);
         }
-        
+
         private bool PercentChance(int percentage)
         {
             return _random.Next(100) < percentage;

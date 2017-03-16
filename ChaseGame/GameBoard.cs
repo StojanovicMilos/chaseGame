@@ -76,7 +76,9 @@ namespace ChaseGameNamespace
                 for (int y = 1; y < _gameBoard[x].Length; y++)
                 {
                     if (InvalidField(x, y))
+                    {
                         return false;
+                    }
                 }
             }
             return true;
@@ -244,6 +246,24 @@ namespace ChaseGameNamespace
             }
 
             return numberOfNeighbourRoads;
+        }
+
+        public void SetBackgroundImages()
+        {
+            for (int x = 0; x < _gameBoard.Length; x++)
+            {
+                for (int y = 0; y < _gameBoard[x].Length; y++)
+                {
+                    if (FieldIsType(x, y, GameFieldType.Grass))
+                    {
+                        _gameBoard[x][y].SetPictureBoxImage(Properties.Resources.grass);
+                    }
+                    else
+                    {
+                        _gameBoard[x][y].SetPictureBoxImage(Properties.Resources.road);
+                    }
+                }
+            }
         }
     }
 }

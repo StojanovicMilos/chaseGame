@@ -14,6 +14,8 @@ namespace ChaseGameNamespace
             set;
         }
 
+        void SetBackgroundImages();
+
         bool FieldIsType(int x, int y, GameFieldType type);
         bool TopNeighbourIsType(int x, int y, GameFieldType type);
         bool TopRightNeighbourIsType(int x, int y, GameFieldType type);
