@@ -42,7 +42,7 @@ namespace ChaseGameNamespace
             if (radioButton1.Checked)
                 generator = new StaticGenerator();
             else if (radioButton2.Checked)
-                generator = new RandomGenerator(new TextLogger());
+                generator = new RandomGenerator(new DummyLogger());//TextLogger());
             else
                 generator = null;
             ChaseGame chaseGame = new ChaseGame(_pictureBoxes, numberOfPlayers, generator);

@@ -89,7 +89,7 @@ namespace ChaseGameTest
                 const int boardSizeX = 160;
                 const int boardSizeY = 90;
                 Initialize(numberOfPlayers, boardSizeX, boardSizeY);
-                IGenerator randomGenerator = new RandomGenerator(new TextLogger());
+                IGenerator randomGenerator = new RandomGenerator(new DummyLogger());//TextLogger());
 
                 // act  
                 ChaseGame chaseGame = new ChaseGame(_pictureBoxes, _numberOfPlayers, randomGenerator);
