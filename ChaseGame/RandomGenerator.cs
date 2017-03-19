@@ -10,7 +10,7 @@ namespace ChaseGameNamespace
         private List<Coordinates> _possibleNewNeighbours;
         private IGameBoard _gameBoard;
         private readonly Random _random = new Random();
-        private readonly int[] _inserBetterNameHere = { 100, 100, 70, 10, 0 };
+        private readonly int[] _neighboursProbabilities = { 100, 100, 70, 10, 0 };
         public RandomGenerator(ILogger logger)
         {
             _logger = logger;
@@ -92,7 +92,7 @@ namespace ChaseGameNamespace
             _possibleNewNeighbours = _gameBoard.GetPossibleNewNeighbours(x, y);
             _logger.Log("_possibleNewNeighbours = " + _possibleNewNeighbours.ListEveryElement());
 
-            while ((_possibleNewNeighbours.Count > 0) && (PercentChance(_inserBetterNameHere[numberOfNeighbourRoads])))
+            while ((_possibleNewNeighbours.Count > 0) && (PercentChance(_neighboursProbabilities[numberOfNeighbourRoads])))
             {
                 numberOfNeighbourRoads++;
                 _logger.Log("adding neighbour number " + (numberOfNeighbourRoads).ToString());

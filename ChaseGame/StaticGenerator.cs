@@ -23,6 +23,7 @@ namespace ChaseGameNamespace
                     _gameBoard[x, y] = new GameField(pictureBoxes[x][y], type);
                 }
             }
+            _gameBoard.SetBackgroundImages();
             return _gameBoard;
         }
     }
