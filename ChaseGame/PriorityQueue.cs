@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DataStructures.PriorityQueues
 {
-	public class PriorityQueue<T>
+    public class PriorityQueue<T>
 	{
 		private const int InitialCapacity = 100;
 		private T[] queue;

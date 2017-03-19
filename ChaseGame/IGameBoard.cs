@@ -33,5 +33,8 @@ namespace ChaseGameNamespace
         bool TopRightInvalid(int x, int y);
         bool BottomRightInvalid(int x, int y);
         bool BottomLeftInvalid(int x, int y);
+
+        int GetPlayerPositionX(Player player);
+        int GetPlayerPositionY(Player player);
     }
 }

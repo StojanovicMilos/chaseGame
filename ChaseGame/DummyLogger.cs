@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChaseGameNamespace
+﻿namespace ChaseGameNamespace
 {
     public class DummyLogger : ILogger
     {
         public void Log(string message)
         {
-            
+            //it shouldn't do anything
         }
     }
 }

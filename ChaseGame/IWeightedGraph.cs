@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace DataStructures.Graphs
+﻿namespace DataStructures.Graphs
 {
     public interface IWeightedGraph<TVertex> : IGraph<TVertex>
     {

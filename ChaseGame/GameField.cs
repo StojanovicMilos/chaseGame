@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace ChaseGameNamespace
+﻿namespace ChaseGameNamespace
 {
-	public class GameField
+    public class GameField
     {
+        public bool StateChanged { get; set; }
 
-		private readonly Dictionary<GameFieldType, Color> _colors = new Dictionary<GameFieldType, Color>
-		{
-			{ GameFieldType.Road, Color.Silver },
-			{ GameFieldType.Grass, Color.Green }
-		};
+        private Player _player;
 
-	    public GameFieldType Type { get; }
+        public Player GetPlayer()
+        {
+            return _player;
+        }
+
+        public void SetPlayer(Player value)
+        {
+            _player = value;
+            StateChanged = true;
+        }
+
+        public GameFieldType Type { get; }
 
         public GameField(GameFieldType type)
         {
-	        Type = type;
+            _player = null;
+            Type = type;
+            StateChanged = true; //gamefield needs to be drawn after this
         }
     }
 }

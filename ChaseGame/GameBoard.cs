@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Windows.Forms;
-using MoreLinq;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 
 namespace ChaseGameNamespace
 {
@@ -243,6 +239,34 @@ namespace ChaseGameNamespace
             }
 
             return numberOfNeighbourRoads;
+        }
+
+        //TODO refactor
+        public int GetPlayerPositionX(Player player)
+        {
+            for (int i = 0; i < _gameBoard.Length; i++)
+            {
+                for (int j = 0; j < _gameBoard[i].Length; j++)
+                {
+                    if (player.Equals(_gameBoard[i][j].GetPlayer()))
+                        return i;
+                }
+            }
+            throw new Exception("Unable to find player " + player.Name);
+        }
+
+        //TODO refactor
+        public int GetPlayerPositionY(Player player)
+        {
+            for (int i = 0; i < _gameBoard.Length; i++)
+            {
+                for (int j = 0; j < _gameBoard[i].Length; j++)
+                {
+                    if (player.Equals(_gameBoard[i][j].GetPlayer()))
+                        return j;
+                }
+            }
+            throw new Exception("Unable to find player " + player.Name);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace ChaseGameNamespace
 {
@@ -16,13 +15,32 @@ namespace ChaseGameNamespace
             _logger = logger;
         }
 
-        public IGameBoard GenerateGameBoard(int boardSizeX, int boardSizeY)
+        public IGameBoard GenerateGameBoard(int boardSizeX, int boardSizeY, Player[] players)
         {
             InitializeGameBoard(boardSizeX, boardSizeY);
             SetOutlineFieldsToRoads();
             GenerateRoads();
             FillRemainingFieldsWithGrass();
+            RandomizePlayerPositions(players);
             return _gameBoard;
+        }
+
+        private void RandomizePlayerPositions(Player[] players)
+        {
+            Random random = new Random();
+            for (int i = 0; i < players.Length; i++)
+            {
+                int x = random.Next(_gameBoard.LengthX);
+                int y = random.Next(_gameBoard.LengthY);
+
+                while ((_gameBoard[x, y].Type != GameFieldType.Road) || (_gameBoard[x, y].GetPlayer() != null))
+                {
+                    x = random.Next(_gameBoard.LengthX);
+                    y = random.Next(_gameBoard.LengthY);
+                }
+
+                _gameBoard[x, y].SetPlayer(players[i]);
+            }
         }
 
         private void InitializeGameBoard(int boardSizeX, int boardSizeY)
