@@ -4,6 +4,6 @@ namespace ChaseGameNamespace
 {
     public interface IGenerator
     {
-        IGameBoard GenerateGameBoard(PictureBox[][] pictureBoxes);
+        IGameBoard GenerateGameBoard(int boardSizeX, int boardSizeY);
     }
 }

@@ -16,24 +16,23 @@ namespace ChaseGameNamespace
             _logger = logger;
         }
 
-        public IGameBoard GenerateGameBoard(PictureBox[][] pictureBoxes)
+        public IGameBoard GenerateGameBoard(int boardSizeX, int boardSizeY)
         {
-            InitializeGameBoard(pictureBoxes);
-            SetOutlineFieldsToRoads(pictureBoxes);
-            GenerateRoads(pictureBoxes);
-            FillRemainingFieldsWithGrass(pictureBoxes);
-            _gameBoard.SetBackgroundImages();
+            InitializeGameBoard(boardSizeX, boardSizeY);
+            SetOutlineFieldsToRoads();
+            GenerateRoads();
+            FillRemainingFieldsWithGrass();
             return _gameBoard;
         }
 
-        private void InitializeGameBoard(PictureBox[][] pictureBoxes)
+        private void InitializeGameBoard(int boardSizeX, int boardSizeY)
         {
             _logger.Log("Initializing game board");
-            _gameBoard = new GameBoard(pictureBoxes.Length, pictureBoxes[0].Length);
+            _gameBoard = new GameBoard(boardSizeX, boardSizeY);
             _logger.Log("GameBoardSize = " + _gameBoard.LengthX + ", " + _gameBoard.LengthY);
         }
 
-        private void SetOutlineFieldsToRoads(PictureBox[][] pictureBoxes)
+        private void SetOutlineFieldsToRoads()
         {
             for (int x = 0; x < _gameBoard.LengthX; x++)
             {
@@ -41,7 +40,7 @@ namespace ChaseGameNamespace
                 {
                     if (FieldIsOutline(x, y))
                     {
-                        _gameBoard[x, y] = new GameField(pictureBoxes[x][y], GameFieldType.Road);
+                        _gameBoard[x, y] = new GameField(GameFieldType.Road);
                         _logger.Log("Outline field at coordinates [" + x + "][" + y + "] is set to road");
                     }
                 }
@@ -53,7 +52,7 @@ namespace ChaseGameNamespace
             return (x == 0) || (y == 0) || (x == (_gameBoard.LengthX - 1)) || (y == (_gameBoard.LengthY - 1));
         }
 
-        private void GenerateRoads(PictureBox[][] pictureBoxes)
+        private void GenerateRoads()
         {
             for (int x = 0; x < _gameBoard.LengthX; x++)
             {
@@ -63,14 +62,14 @@ namespace ChaseGameNamespace
                     {
                         _logger.Log("--------------------------------------------------");
                         _logger.Log("Generating surrounding fields for " + x + ", " + y);
-                        GenerateSurroundingFields(x, y, pictureBoxes);
+                        GenerateSurroundingFields(x, y);
                         _logger.Log("Finished generating surrounding fields for " + x + ", " + y);
                     }
                 }
             }
         }
 
-        private void FillRemainingFieldsWithGrass(PictureBox[][] pictureBoxes)
+        private void FillRemainingFieldsWithGrass()
         {
             for (int x = 0; x < _gameBoard.LengthX; x++)
             {
@@ -78,14 +77,14 @@ namespace ChaseGameNamespace
                 {
                     if ((_gameBoard[x, y] == null) || (_gameBoard.GetNumberOfNeighbourRoads(x, y) == 1))
                     {
-                        _gameBoard[x, y] = new GameField(pictureBoxes[x][y], GameFieldType.Grass);
+                        _gameBoard[x, y] = new GameField(GameFieldType.Grass);
                         _logger.Log("field [" + x + "][" + y + "] is set to grass");
                     }
                 }
             }
         }
 
-        private void GenerateSurroundingFields(int x, int y, PictureBox[][] pictureBoxes)
+        private void GenerateSurroundingFields(int x, int y)
         {
             int numberOfNeighbourRoads = _gameBoard.GetNumberOfNeighbourRoads(x, y);
             _logger.Log("numberOfNeighbourRoads = " + numberOfNeighbourRoads);
@@ -96,20 +95,20 @@ namespace ChaseGameNamespace
             {
                 numberOfNeighbourRoads++;
                 _logger.Log("adding neighbour number " + (numberOfNeighbourRoads).ToString());
-                AddNeighbour(pictureBoxes);
+                AddNeighbour();
                 _logger.Log("added neighbour number " + (numberOfNeighbourRoads).ToString());
                 _possibleNewNeighbours = _gameBoard.GetPossibleNewNeighbours(x, y);
                 _logger.Log("_possibleNewNeighbours = " + _possibleNewNeighbours.ListEveryElement());
             }
         }
 
-        private void AddNeighbour(PictureBox[][] pictureBoxes)
+        private void AddNeighbour()
         {
             int index = _random.Next(_possibleNewNeighbours.Count);
             _logger.Log("adding neighbour with index = " + index + " from list.");
             Coordinates coordinates = _possibleNewNeighbours[index];
             _logger.Log("coordinates of neighbour with index " + index + " = " + coordinates.ToString());
-            _gameBoard[coordinates.X, coordinates.Y] = new GameField(pictureBoxes[coordinates.X][coordinates.Y], GameFieldType.Road);
+            _gameBoard[coordinates.X, coordinates.Y] = new GameField(GameFieldType.Road);
             _logger.Log("Field at coordinates " + coordinates.ToString() + " set to road");
             //_possibleNewNeighbours.RemoveAt(index);
         }
@@ -123,5 +122,6 @@ namespace ChaseGameNamespace
         {
             return _gameBoard.ValidateGameBoard();
         }
+
     }
 }

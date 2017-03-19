@@ -115,11 +115,6 @@ namespace ChaseGameNamespace
                                         && BottomLeftNeighbourIsType(x, y, GameFieldType.Road) && LeftNeighbourIsType(x, y, GameFieldType.Road);
         }
 
-        public void Draw()
-        {
-            _gameBoard.ForEach(row => row.ForEach(column => column.Draw()));
-        }
-
         public List<Coordinates> GetPossibleNewNeighbours(int x, int y)
         {
             List<Coordinates> possibleNewNeighbours = new List<Coordinates>();
@@ -217,7 +212,7 @@ namespace ChaseGameNamespace
 
         private bool CanBeRoad(int x, int y)
         {
-            _gameBoard[x][y] = new GameField(null, GameFieldType.Road);
+            _gameBoard[x][y] = new GameField(GameFieldType.Road);
             bool canBeRoad = !InvalidField(x, y);
             _gameBoard[x][y] = null;
             return canBeRoad;
@@ -248,43 +243,6 @@ namespace ChaseGameNamespace
             }
 
             return numberOfNeighbourRoads;
-        }
-
-        public void SetBackgroundImages()
-        {
-            for (int x = 0; x < _gameBoard.Length; x++)
-            {
-                for (int y = 0; y < _gameBoard[x].Length; y++)
-                {
-                    if (FieldIsType(x, y, GameFieldType.Grass))
-                    {
-                        _gameBoard[x][y].SetPictureBoxImage(Properties.Resources.grass);
-                    }
-                    else
-                    {
-                        StringBuilder imagePath = new StringBuilder("..\\..\\Resources\\road");
-                        if(TopNeighbourIsType(x,y, GameFieldType.Road))
-                        {
-                            imagePath.Append("top");
-                        }
-                        if(RightNeighbourIsType(x,y, GameFieldType.Road))
-                        {
-                            imagePath.Append("right");
-                        }
-                        if(BottomNeighbourIsType(x,y, GameFieldType.Road))
-                        {
-                            imagePath.Append("bottom");
-                        }
-                        if(LeftNeighbourIsType(x,y, GameFieldType.Road))
-                        {
-                            imagePath.Append("left");
-                        }
-                        imagePath.Append(".bmp");
-                        Image image = new Bitmap(imagePath.ToString());
-                        _gameBoard[x][y].SetPictureBoxImage(image);
-                    }
-                }
-            }
         }
     }
 }

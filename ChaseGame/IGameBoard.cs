@@ -7,14 +7,11 @@ namespace ChaseGameNamespace
         int LengthX { get; }
         int LengthY { get; }
 
-        void Draw();
         GameField this[int x, int y]
         {
             get;
             set;
         }
-
-        void SetBackgroundImages();
 
         bool FieldIsType(int x, int y, GameFieldType type);
         bool TopNeighbourIsType(int x, int y, GameFieldType type);

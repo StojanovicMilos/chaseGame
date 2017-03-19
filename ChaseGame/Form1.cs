@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ChaseGameNamespace
@@ -45,8 +46,47 @@ namespace ChaseGameNamespace
                 generator = new RandomGenerator(new TextLogger());
             else
                 generator = null;
-            ChaseGame chaseGame = new ChaseGame(_pictureBoxes, numberOfPlayers, generator);
+            ChaseGame chaseGame = new ChaseGame(_pictureBoxes.Length, _pictureBoxes[0].Length, numberOfPlayers, generator);
+            DrawChaseGame(chaseGame);
             Text = chaseGame.ValidateGameBoard() ? "Valid" : "Invalid";
+        }
+
+        private void DrawChaseGame(ChaseGame chaseGame)
+        {
+            IGameBoard gameBoard = chaseGame.GetGameBoard();
+            for (int x = 0; x < gameBoard.LengthX; x++)
+            {
+                for (int y = 0; y < gameBoard.LengthY; y++)
+                {
+                    if (gameBoard.FieldIsType(x, y, GameFieldType.Grass))
+                    {
+                        _pictureBoxes[x][y].Image = Properties.Resources.grass;
+                    }
+                    else
+                    {
+                        StringBuilder imagePath = new StringBuilder("..\\..\\Resources\\road");
+                        if (gameBoard.TopNeighbourIsType(x, y, GameFieldType.Road))
+                        {
+                            imagePath.Append("top");
+                        }
+                        if (gameBoard.RightNeighbourIsType(x, y, GameFieldType.Road))
+                        {
+                            imagePath.Append("right");
+                        }
+                        if (gameBoard.BottomNeighbourIsType(x, y, GameFieldType.Road))
+                        {
+                            imagePath.Append("bottom");
+                        }
+                        if (gameBoard.LeftNeighbourIsType(x, y, GameFieldType.Road))
+                        {
+                            imagePath.Append("left");
+                        }
+                        imagePath.Append(".bmp");
+                        Image image = new Bitmap(imagePath.ToString());
+                        _pictureBoxes[x][y].Image = image;
+                    }
+                }
+            }
         }
     }
 }
