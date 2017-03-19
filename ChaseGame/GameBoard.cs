@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using MoreLinq;
 using System.Collections.Generic;
+using System.Text;
+using System.Drawing;
 
 namespace ChaseGameNamespace
 {
@@ -260,7 +262,26 @@ namespace ChaseGameNamespace
                     }
                     else
                     {
-                        _gameBoard[x][y].SetPictureBoxImage(Properties.Resources.road);
+                        StringBuilder imagePath = new StringBuilder("..\\..\\Resources\\road");
+                        if(TopNeighbourIsType(x,y, GameFieldType.Road))
+                        {
+                            imagePath.Append("top");
+                        }
+                        if(RightNeighbourIsType(x,y, GameFieldType.Road))
+                        {
+                            imagePath.Append("right");
+                        }
+                        if(BottomNeighbourIsType(x,y, GameFieldType.Road))
+                        {
+                            imagePath.Append("bottom");
+                        }
+                        if(LeftNeighbourIsType(x,y, GameFieldType.Road))
+                        {
+                            imagePath.Append("left");
+                        }
+                        imagePath.Append(".bmp");
+                        Image image = new Bitmap(imagePath.ToString());
+                        _gameBoard[x][y].SetPictureBoxImage(image);
                     }
                 }
             }

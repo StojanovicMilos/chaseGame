@@ -121,7 +121,49 @@
   <data name="grass" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\grass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="road" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\road.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="roadbottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadbottom.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadbottomleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadbottomleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadright.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadrightbottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadrightbottom.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadrightbottomleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadrightbottomleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadrightleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadrightleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadtop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadtop.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadtopbottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadtopbottom.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadtopbottomleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadtopbottomleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadtopleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadtopleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadtopright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadtopright.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadtoprightbottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadtoprightbottom.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadtoprightbottomleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadtoprightbottomleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roadtoprightleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roadtoprightleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

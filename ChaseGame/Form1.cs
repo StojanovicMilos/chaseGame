@@ -35,7 +35,7 @@ namespace ChaseGameNamespace
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             const int numberOfPlayers = 5;
             IGenerator generator;

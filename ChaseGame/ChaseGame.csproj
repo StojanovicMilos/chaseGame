@@ -145,7 +145,49 @@
     <None Include="Resources\grass.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\road.png" />
+    <None Include="Resources\roadbottom.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadbottomleft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadleft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadright.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadrightbottom.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadrightbottomleft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadrightleft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadtop.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadtopbottom.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadtopbottomleft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadtopleft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadtopright.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadtoprightbottom.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadtoprightbottomleft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roadtoprightleft.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
